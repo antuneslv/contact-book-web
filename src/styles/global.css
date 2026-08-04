@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@import "./fonts.css";
+
+html, body {
+  font-family: "Geist Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a, button {
+  cursor: pointer;
+}
