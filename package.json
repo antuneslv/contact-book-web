@@ -9,6 +9,8 @@
   "scripts": {
     "dev": "vite --open",
     "dev:mock": "vite --mode mock --open",
+    "test": "vitest --run",
+    "test:cov": "vitest --run --coverage",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",

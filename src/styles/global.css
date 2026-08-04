@@ -1,5 +1,7 @@
 @import "tailwindcss";
 @import "./fonts.css";
+@import "./themes.css";
+@import "./utilities.css";
 
 html, body {
   font-family: "Geist Sans", sans-serif;
