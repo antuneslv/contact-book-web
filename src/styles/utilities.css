@@ -1,0 +1,23 @@
+@utility typ-display {
+  @apply font-geist-sans font-semibold text-3xl/8.5;
+}
+
+@utility typ-heading {
+  @apply font-geist-sans font-semibold text-2xl/7;
+}
+
+@utility typ-title {
+  @apply font-geist-sans font-semibold text-xl/6;
+}
+
+@utility typ-body {
+  @apply font-geist-sans font-regular text-base/5;
+}
+
+@utility typ-label {
+  @apply font-geist-sans font-medium text-sm/4.5;
+}
+
+@utility typ-caption {
+  @apply font-geist-sans font-regular text-xs/4;
+}

@@ -16,7 +16,7 @@
 
 @font-face {
   font-family: "Geist Sans";
-  src: url("@/assets/fonts/geist-sans-bold.woff2") format("woff2");
+  src: url("@/assets/fonts/geist-sans-semibold.woff2") format("woff2");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
