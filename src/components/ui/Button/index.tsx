@@ -4,14 +4,14 @@ import { mergeClasses } from '@/utils/mergeClasses'
 import { tv, type VariantProps } from 'tailwind-variants'
 
 const buttonVariants = tv({
-  base: 'typ-label focus-visible:ring-primary inline-flex h-10 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-xl px-4 whitespace-nowrap transition-colors select-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50',
+  base: 'typ-label focus-visible:ring-primary inline-flex h-10 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-md px-4 whitespace-nowrap transition-colors select-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-default disabled:opacity-50',
 
   variants: {
     variant: {
-      primary: 'bg-primary text-text-inverse hover:bg-primary-hover',
+      primary: 'bg-primary text-text-inverse enabled:hover:bg-primary-hover',
       secondary:
-        'border-border bg-surface text-text hover:bg-background border',
-      danger: 'bg-error text-text-inverse hover:bg-error-hover',
+        'border-border bg-surface text-text enabled:hover:bg-background border',
+      danger: 'bg-error text-text-inverse enabled:hover:bg-error-hover',
     },
 
     fullWidth: {
