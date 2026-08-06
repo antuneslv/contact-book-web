@@ -1,3 +1,7 @@
+@utility typ-brand {
+  @apply font-geist-sans font-semibold text-4xl/10;
+}
+
 @utility typ-display {
   @apply font-geist-sans font-semibold text-3xl/8.5;
 }

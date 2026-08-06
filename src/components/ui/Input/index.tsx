@@ -26,13 +26,13 @@ const inputVariants = tv({
       },
     },
 
-    hasLeftIcon: {
+    hasStartAdornment: {
       true: {
         input: 'pl-10',
       },
     },
 
-    hasRightIcon: {
+    hasEndAdornment: {
       true: {
         input: 'pr-10',
       },
@@ -47,20 +47,20 @@ const inputVariants = tv({
   },
 })
 
-type InputProps = ComponentProps<'input'> & {
+export type InputProps = ComponentProps<'input'> & {
   label?: string
   helperText?: string
   errorText?: string
-  leftIcon?: ReactNode
-  rightIcon?: ReactNode
+  startAdornment?: ReactNode
+  endAdornment?: ReactNode
 }
 
 export function Input({
   label,
   helperText,
   errorText,
-  leftIcon,
-  rightIcon,
+  startAdornment,
+  endAdornment,
   disabled,
   className,
   id,
@@ -74,8 +74,8 @@ export function Input({
     errorText: errorStyle,
   } = inputVariants({
     invalid: !!errorText,
-    hasLeftIcon: !!leftIcon,
-    hasRightIcon: !!rightIcon,
+    hasStartAdornment: !!startAdornment,
+    hasEndAdornment: !!endAdornment,
     disabled: !!disabled,
   })
   const uniqueId = useId()
@@ -90,9 +90,9 @@ export function Input({
       )}
 
       <div className="relative">
-        {leftIcon && (
+        {startAdornment && (
           <span className="text-text-tertiary absolute top-1/2 left-3 -translate-y-1/2">
-            {leftIcon}
+            {startAdornment}
           </span>
         )}
 
@@ -103,9 +103,9 @@ export function Input({
           {...props}
         />
 
-        {rightIcon && (
+        {endAdornment && (
           <span className="text-text-tertiary absolute top-1/2 right-3 -translate-y-1/2">
-            {rightIcon}
+            {endAdornment}
           </span>
         )}
       </div>

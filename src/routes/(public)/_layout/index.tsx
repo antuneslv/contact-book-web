@@ -1,4 +1,5 @@
 import { LogoIcon } from '@/assets/icons/LogoIcon'
+import { PasswordInput } from '@/components/PasswordInput'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import { createFileRoute } from '@tanstack/react-router'
@@ -26,6 +27,11 @@ function Index() {
         <Input id="password" label="Senha" type="password" />
 
         <Input label="Nome" errorText="Nome é obrigatório" />
+
+        <PasswordInput
+          label="Confirme a senha"
+          placeholder="Confirme a senha"
+        />
 
         <Input
           label="Observações"

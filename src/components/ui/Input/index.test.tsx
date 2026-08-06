@@ -55,13 +55,13 @@ describe('Input component', () => {
   })
 
   it('should render the left icon', () => {
-    render(<Input leftIcon={<span data-testid="left-icon">L</span>} />)
+    render(<Input startAdornment={<span data-testid="left-icon">L</span>} />)
 
     expect(screen.getByTestId('left-icon')).toBeInTheDocument()
   })
 
   it('should render the right icon', () => {
-    render(<Input rightIcon={<span data-testid="right-icon">R</span>} />)
+    render(<Input endAdornment={<span data-testid="right-icon">R</span>} />)
 
     expect(screen.getByTestId('right-icon')).toBeInTheDocument()
   })

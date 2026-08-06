@@ -4,12 +4,12 @@ import { Outlet } from '@tanstack/react-router'
 export function AuthLayout() {
   return (
     <main className="mx-auto flex min-h-screen max-w-405">
-      <aside className="bp-desktop:flex hidden w-1/2 flex-col items-center justify-center gap-8">
+      <aside className="bp-desktop:flex hidden flex-1 flex-col items-center justify-center gap-12">
         <LogoIcon className="h-32 w-auto" />
 
-        <h1 className="typ-display">Contact Book</h1>
+        <h1 className="typ-brand text-text-primary">Contact Book</h1>
 
-        <p className="typ-body text-center">
+        <p className="text-text-secondary font-regular text-center text-xl/10">
           Organize seus contatos
           <br />
           de forma simples e prática.
