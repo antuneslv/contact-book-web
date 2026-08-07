@@ -10,35 +10,48 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as publicLayoutRouteImport } from './routes/(public)/_layout'
-import { Route as publicLayoutIndexRouteImport } from './routes/(public)/_layout/index'
+import { Route as publicLayoutSignInRouteImport } from './routes/(public)/_layout/sign-in'
+import { Route as publicLayoutSignUpRouteImport } from './routes/(public)/_layout/sign-up'
 
 const publicLayoutRoute = publicLayoutRouteImport.update({
   id: '/(public)/_layout',
   getParentRoute: () => rootRouteImport,
 } as any)
-const publicLayoutIndexRoute = publicLayoutIndexRouteImport.update({
-  id: '/',
-  path: '/',
+const publicLayoutSignInRoute = publicLayoutSignInRouteImport.update({
+  id: '/sign-in',
+  path: '/sign-in',
+  getParentRoute: () => publicLayoutRoute,
+} as any)
+const publicLayoutSignUpRoute = publicLayoutSignUpRouteImport.update({
+  id: '/sign-up',
+  path: '/sign-up',
   getParentRoute: () => publicLayoutRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof publicLayoutIndexRoute
+  '/sign-in': typeof publicLayoutSignInRoute
+  '/sign-up': typeof publicLayoutSignUpRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof publicLayoutIndexRoute
+  '/sign-in': typeof publicLayoutSignInRoute
+  '/sign-up': typeof publicLayoutSignUpRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/(public)/_layout': typeof publicLayoutRouteWithChildren
-  '/(public)/_layout/': typeof publicLayoutIndexRoute
+  '/(public)/_layout/sign-in': typeof publicLayoutSignInRoute
+  '/(public)/_layout/sign-up': typeof publicLayoutSignUpRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/sign-in' | '/sign-up'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/(public)/_layout' | '/(public)/_layout/'
+  to: '/sign-in' | '/sign-up'
+  id:
+    | '__root__'
+    | '/(public)/_layout'
+    | '/(public)/_layout/sign-in'
+    | '/(public)/_layout/sign-up'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -54,22 +67,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof publicLayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(public)/_layout/': {
-      id: '/(public)/_layout/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof publicLayoutIndexRouteImport
+    '/(public)/_layout/sign-in': {
+      id: '/(public)/_layout/sign-in'
+      path: '/sign-in'
+      fullPath: '/sign-in'
+      preLoaderRoute: typeof publicLayoutSignInRouteImport
+      parentRoute: typeof publicLayoutRoute
+    }
+    '/(public)/_layout/sign-up': {
+      id: '/(public)/_layout/sign-up'
+      path: '/sign-up'
+      fullPath: '/sign-up'
+      preLoaderRoute: typeof publicLayoutSignUpRouteImport
       parentRoute: typeof publicLayoutRoute
     }
   }
 }
 
 interface publicLayoutRouteChildren {
-  publicLayoutIndexRoute: typeof publicLayoutIndexRoute
+  publicLayoutSignInRoute: typeof publicLayoutSignInRoute
+  publicLayoutSignUpRoute: typeof publicLayoutSignUpRoute
 }
 
 const publicLayoutRouteChildren: publicLayoutRouteChildren = {
-  publicLayoutIndexRoute: publicLayoutIndexRoute,
+  publicLayoutSignInRoute: publicLayoutSignInRoute,
+  publicLayoutSignUpRoute: publicLayoutSignUpRoute,
 }
 
 const publicLayoutRouteWithChildren = publicLayoutRoute._addFileChildren(

@@ -16,8 +16,10 @@ export function AuthLayout() {
         </p>
       </aside>
 
-      <section className="min-w-0 flex-1">
-        <Outlet />
+      <section className="bp-desktop:px-6 flex flex-1 items-center justify-center px-4">
+        <div className="w-full max-w-xl">
+          <Outlet />
+        </div>
       </section>
     </main>
   )

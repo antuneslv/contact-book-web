@@ -10,7 +10,7 @@ const inputVariants = tv({
     label: 'typ-label text-text',
 
     input:
-      'border-border bg-surface typ-body text-text placeholder:text-text-tertiary focus:border-primary focus:ring-primary/20 disabled:bg-background disabled:text-text-disabled disabled:placeholder:text-text-disabled h-10 w-full rounded-md border px-3 transition-colors focus:ring-2 focus:outline-none disabled:cursor-default',
+      'border-border-primary bg-surface typ-body text-text placeholder:text-text-tertiary focus:border-primary focus:ring-primary/20 disabled:bg-background disabled:text-text-disabled disabled:placeholder:text-text-disabled h-10 w-full rounded-md border px-3 transition-colors focus:ring-2 focus:outline-none disabled:cursor-default',
 
     helperText: 'typ-caption text-text-secondary',
 

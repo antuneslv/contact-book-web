@@ -10,7 +10,7 @@ const buttonVariants = tv({
     variant: {
       primary: 'bg-primary text-text-inverse enabled:hover:bg-primary-hover',
       secondary:
-        'border-border bg-surface text-text enabled:hover:bg-background border',
+        'border-border-primary bg-surface text-text enabled:hover:bg-background border',
       danger: 'bg-error text-text-inverse enabled:hover:bg-error-hover',
     },
 

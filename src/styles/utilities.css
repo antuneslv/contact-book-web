@@ -25,3 +25,7 @@
 @utility typ-caption {
   @apply font-geist-sans font-regular text-xs/4;
 }
+
+@utility typ-link {
+  @apply typ-body text-primary transition-colors hover:text-primary-hover;
+}

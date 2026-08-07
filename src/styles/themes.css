@@ -19,12 +19,13 @@
   --color-purple-600: #5b4ad6;
 
   /* Neutral */
-  --color-neutral-50: #f8fafc;
   --color-neutral-100: #f1f5f9;
   --color-neutral-200: #e5e7eb;
+  --color-neutral-300: #d1d5db;
   --color-neutral-400: #9ca3af;
   --color-neutral-500: #6b7280;
   --color-neutral-600: #4b5563;
+  --color-neutral-800: #1f2937;
   --color-neutral-900: #111827;
   --color-white: #ffffff;
 
@@ -45,12 +46,12 @@
   --color-primary-soft: var(--color-purple-100);
   
   /* Backgrounds */
-  --color-background: var(--color-neutral-50);
+  --color-background: var(--color-neutral-100);
   --color-surface: var(--color-white);
   
   /* Sidebar */
   --color-sidebar: var(--color-neutral-900);
-  --color-sidebar-hover: #1f2937;
+  --color-sidebar-hover: var(--color-neutral-800);
   --color-sidebar-active: var(--color-primary);
   
   /* Text */
@@ -61,8 +62,9 @@
   --color-text-inverse: var(--color-white);
   
   /* Border */
-  --color-border: var(--color-neutral-200);
-  --color-divider: var(--color-neutral-100);
+  --color-border-primary: var(--color-neutral-300);
+  --color-border-secondary: var(--color-neutral-200);
+  --color-divider: var(--color-neutral-300);
   
   /* Feedback */
   --color-success: var(--color-green-500);
@@ -73,4 +75,7 @@
   --color-error-soft: var(--color-red-50);
   
   --color-warning: var(--color-yellow-500);
+
+  --shadow-*: initial;
+  --shadow-card: 0 8px 32px rgb(17 24 39 / 0.06);
 }
