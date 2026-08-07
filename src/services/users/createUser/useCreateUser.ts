@@ -11,7 +11,7 @@ export function useCreateUser() {
       mutationFn: createUser,
 
       onSuccess: () => {
-        navigate({ to: '/sign-in' })
+        navigate({ to: '/entrar' })
       },
     })
 

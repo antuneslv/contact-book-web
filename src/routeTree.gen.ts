@@ -10,48 +10,48 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as publicLayoutRouteImport } from './routes/(public)/_layout'
-import { Route as publicLayoutSignInRouteImport } from './routes/(public)/_layout/sign-in'
-import { Route as publicLayoutSignUpRouteImport } from './routes/(public)/_layout/sign-up'
+import { Route as publicLayoutCadastrarRouteImport } from './routes/(public)/_layout/cadastrar'
+import { Route as publicLayoutEntrarRouteImport } from './routes/(public)/_layout/entrar'
 
 const publicLayoutRoute = publicLayoutRouteImport.update({
   id: '/(public)/_layout',
   getParentRoute: () => rootRouteImport,
 } as any)
-const publicLayoutSignInRoute = publicLayoutSignInRouteImport.update({
-  id: '/sign-in',
-  path: '/sign-in',
+const publicLayoutCadastrarRoute = publicLayoutCadastrarRouteImport.update({
+  id: '/cadastrar',
+  path: '/cadastrar',
   getParentRoute: () => publicLayoutRoute,
 } as any)
-const publicLayoutSignUpRoute = publicLayoutSignUpRouteImport.update({
-  id: '/sign-up',
-  path: '/sign-up',
+const publicLayoutEntrarRoute = publicLayoutEntrarRouteImport.update({
+  id: '/entrar',
+  path: '/entrar',
   getParentRoute: () => publicLayoutRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/sign-in': typeof publicLayoutSignInRoute
-  '/sign-up': typeof publicLayoutSignUpRoute
+  '/cadastrar': typeof publicLayoutCadastrarRoute
+  '/entrar': typeof publicLayoutEntrarRoute
 }
 export interface FileRoutesByTo {
-  '/sign-in': typeof publicLayoutSignInRoute
-  '/sign-up': typeof publicLayoutSignUpRoute
+  '/cadastrar': typeof publicLayoutCadastrarRoute
+  '/entrar': typeof publicLayoutEntrarRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/(public)/_layout': typeof publicLayoutRouteWithChildren
-  '/(public)/_layout/sign-in': typeof publicLayoutSignInRoute
-  '/(public)/_layout/sign-up': typeof publicLayoutSignUpRoute
+  '/(public)/_layout/cadastrar': typeof publicLayoutCadastrarRoute
+  '/(public)/_layout/entrar': typeof publicLayoutEntrarRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/sign-in' | '/sign-up'
+  fullPaths: '/cadastrar' | '/entrar'
   fileRoutesByTo: FileRoutesByTo
-  to: '/sign-in' | '/sign-up'
+  to: '/cadastrar' | '/entrar'
   id:
     | '__root__'
     | '/(public)/_layout'
-    | '/(public)/_layout/sign-in'
-    | '/(public)/_layout/sign-up'
+    | '/(public)/_layout/cadastrar'
+    | '/(public)/_layout/entrar'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,31 +67,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof publicLayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(public)/_layout/sign-in': {
-      id: '/(public)/_layout/sign-in'
-      path: '/sign-in'
-      fullPath: '/sign-in'
-      preLoaderRoute: typeof publicLayoutSignInRouteImport
+    '/(public)/_layout/cadastrar': {
+      id: '/(public)/_layout/cadastrar'
+      path: '/cadastrar'
+      fullPath: '/cadastrar'
+      preLoaderRoute: typeof publicLayoutCadastrarRouteImport
       parentRoute: typeof publicLayoutRoute
     }
-    '/(public)/_layout/sign-up': {
-      id: '/(public)/_layout/sign-up'
-      path: '/sign-up'
-      fullPath: '/sign-up'
-      preLoaderRoute: typeof publicLayoutSignUpRouteImport
+    '/(public)/_layout/entrar': {
+      id: '/(public)/_layout/entrar'
+      path: '/entrar'
+      fullPath: '/entrar'
+      preLoaderRoute: typeof publicLayoutEntrarRouteImport
       parentRoute: typeof publicLayoutRoute
     }
   }
 }
 
 interface publicLayoutRouteChildren {
-  publicLayoutSignInRoute: typeof publicLayoutSignInRoute
-  publicLayoutSignUpRoute: typeof publicLayoutSignUpRoute
+  publicLayoutCadastrarRoute: typeof publicLayoutCadastrarRoute
+  publicLayoutEntrarRoute: typeof publicLayoutEntrarRoute
 }
 
 const publicLayoutRouteChildren: publicLayoutRouteChildren = {
-  publicLayoutSignInRoute: publicLayoutSignInRoute,
-  publicLayoutSignUpRoute: publicLayoutSignUpRoute,
+  publicLayoutCadastrarRoute: publicLayoutCadastrarRoute,
+  publicLayoutEntrarRoute: publicLayoutEntrarRoute,
 }
 
 const publicLayoutRouteWithChildren = publicLayoutRoute._addFileChildren(
