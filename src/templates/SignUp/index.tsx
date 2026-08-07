@@ -3,11 +3,8 @@ import { PasswordInput } from '@/components/PasswordInput'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import { useCreateUser } from '@/services/users/createUser/useCreateUser'
-import {
-  useForm,
-  type AnyFieldApi,
-  type StandardSchemaV1Issue,
-} from '@tanstack/react-form'
+import { createBlurRevalidateValidator } from '@/utils/createBlurRevalidateValidator'
+import { useForm } from '@tanstack/react-form'
 import { Link } from '@tanstack/react-router'
 import { LoaderCircle } from 'lucide-react'
 import { z } from 'zod'
@@ -33,52 +30,6 @@ const formSchema = z.object({
 })
 
 const fieldsSchema = formSchema.shape
-
-function validateOnBlurThenChange(
-  validate: ({
-    value,
-    fieldApi,
-  }: {
-    value: string
-    fieldApi: AnyFieldApi
-  }) => StandardSchemaV1Issue[] | undefined,
-) {
-  return {
-    onBlur: ({ value, fieldApi }: { value: string; fieldApi: AnyFieldApi }) => {
-      const error = validate({ value, fieldApi })
-
-      if (!error) {
-        fieldApi.setErrorMap({
-          onBlur: undefined,
-          onChange: undefined,
-        })
-      }
-
-      return error
-    },
-
-    onChange: ({
-      value,
-      fieldApi,
-    }: {
-      value: string
-      fieldApi: AnyFieldApi
-    }) => {
-      if (!fieldApi.state.meta.errors.length) return undefined
-
-      const error = validate({ value, fieldApi })
-
-      if (!error) {
-        fieldApi.setErrorMap({
-          onBlur: undefined,
-          onChange: undefined,
-        })
-      }
-
-      return error
-    },
-  }
-}
 
 export function SignUp() {
   const { createUserMutate, createUserIsPending } = useCreateUser()
@@ -113,7 +64,7 @@ export function SignUp() {
       >
         <Field
           name="name"
-          validators={validateOnBlurThenChange(({ fieldApi }) =>
+          validators={createBlurRevalidateValidator(({ fieldApi }) =>
             fieldApi.parseValueWithSchema(fieldsSchema.name),
           )}
         >
@@ -133,7 +84,7 @@ export function SignUp() {
 
         <Field
           name="email"
-          validators={validateOnBlurThenChange(({ fieldApi }) =>
+          validators={createBlurRevalidateValidator(({ fieldApi }) =>
             fieldApi.parseValueWithSchema(fieldsSchema.email),
           )}
         >
@@ -155,7 +106,7 @@ export function SignUp() {
         <div className="bp-desktop:gap-4 bp-desktop:flex-row flex flex-col justify-between gap-2">
           <Field
             name="password"
-            validators={validateOnBlurThenChange(({ fieldApi }) =>
+            validators={createBlurRevalidateValidator(({ fieldApi }) =>
               fieldApi.parseValueWithSchema(fieldsSchema.password),
             )}
           >
@@ -175,7 +126,7 @@ export function SignUp() {
 
           <Field
             name="confirmPassword"
-            validators={validateOnBlurThenChange(({ value, fieldApi }) => {
+            validators={createBlurRevalidateValidator(({ value, fieldApi }) => {
               const validationError = fieldApi.parseValueWithSchema(
                 fieldsSchema.confirmPassword,
               )
@@ -226,7 +177,7 @@ export function SignUp() {
 
       <p className="typ-body text-text-secondary text-center">
         Já tem uma conta?{' '}
-        <Link to="/sign-in" className="typ-link">
+        <Link to="/entrar" className="typ-link">
           Faça login
         </Link>
         .
