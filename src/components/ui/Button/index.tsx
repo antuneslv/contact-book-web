@@ -1,6 +1,7 @@
 import type { ComponentProps } from 'react'
 
 import { mergeClasses } from '@/utils/mergeClasses'
+import { LoaderCircle } from 'lucide-react'
 import { tv, type VariantProps } from 'tailwind-variants'
 
 const buttonVariants = tv({
@@ -17,6 +18,10 @@ const buttonVariants = tv({
     fullWidth: {
       true: 'h-11 w-full',
     },
+
+    loading: {
+      true: 'disabled:cursor-wait disabled:opacity-100',
+    },
   },
 
   defaultVariants: {
@@ -25,22 +30,39 @@ const buttonVariants = tv({
 })
 
 type ButtonProps = ComponentProps<'button'> &
-  VariantProps<typeof buttonVariants>
+  VariantProps<typeof buttonVariants> & { isLoading?: boolean }
 
 export function Button({
   variant,
   fullWidth,
+  isLoading = false,
+  disabled,
   className,
+  children,
   ...props
 }: ButtonProps) {
   return (
     <button
       type="button"
       {...props}
+      disabled={disabled || isLoading}
+      aria-busy={isLoading || undefined}
       className={mergeClasses(
-        buttonVariants({ variant, fullWidth }),
+        buttonVariants({ variant, fullWidth, loading: isLoading }),
         className,
       )}
-    />
+    >
+      {isLoading ? (
+        <LoaderCircle
+          aria-hidden="true"
+          className={mergeClasses(
+            'animate-spin',
+            fullWidth ? 'size-6' : 'size-5',
+          )}
+        />
+      ) : (
+        children
+      )}
+    </button>
   )
 }
