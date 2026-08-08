@@ -6,7 +6,6 @@ import { useCreateUser } from '@/services/users/createUser/useCreateUser'
 import { createBlurRevalidateValidator } from '@/utils/createBlurRevalidateValidator'
 import { useForm } from '@tanstack/react-form'
 import { Link } from '@tanstack/react-router'
-import { LoaderCircle } from 'lucide-react'
 import { z } from 'zod'
 
 const formSchema = z.object({
@@ -19,9 +18,10 @@ const formSchema = z.object({
       'Informe seu nome completo.',
     ),
   email: z
-    .email('Informe um e-mail válido.')
+    .string()
     .trim()
-    .min(1, 'O e-mail é obrigatório.'),
+    .min(1, 'O e-mail é obrigatório.')
+    .pipe(z.email('Informe um e-mail válido.')),
   password: z
     .string()
     .min(1, 'A senha é obrigatória.')
@@ -78,6 +78,7 @@ export function SignUp() {
               onChange={e => field.handleChange(e.target.value)}
               onBlur={field.handleBlur}
               errorText={field.state.meta.errors[0]?.message}
+              disabled={createUserIsPending}
             />
           )}
         </Field>
@@ -99,6 +100,7 @@ export function SignUp() {
               onChange={e => field.handleChange(e.target.value)}
               onBlur={field.handleBlur}
               errorText={field.state.meta.errors[0]?.message}
+              disabled={createUserIsPending}
             />
           )}
         </Field>
@@ -120,27 +122,31 @@ export function SignUp() {
                 onChange={e => field.handleChange(e.target.value)}
                 onBlur={field.handleBlur}
                 errorText={field.state.meta.errors[0]?.message}
+                disabled={createUserIsPending}
               />
             )}
           </Field>
 
           <Field
             name="confirmPassword"
-            validators={createBlurRevalidateValidator(({ value, fieldApi }) => {
-              const validationError = fieldApi.parseValueWithSchema(
-                fieldsSchema.confirmPassword,
-              )
+            validators={{
+              onChangeListenTo: ['password'],
+              ...createBlurRevalidateValidator(({ value, fieldApi }) => {
+                const validationError = fieldApi.parseValueWithSchema(
+                  fieldsSchema.confirmPassword,
+                )
 
-              if (validationError) return validationError
+                if (validationError) return validationError
 
-              const password = fieldApi.form.getFieldValue('password')
+                const password = fieldApi.form.getFieldValue('password')
 
-              if (value !== password) {
-                return [{ message: 'As senhas não coincidem.' }]
-              }
+                if (value !== password) {
+                  return [{ message: 'As senhas não coincidem.' }]
+                }
 
-              return undefined
-            })}
+                return undefined
+              }),
+            }}
           >
             {field => (
               <PasswordInput
@@ -152,6 +158,7 @@ export function SignUp() {
                 onChange={e => field.handleChange(e.target.value)}
                 onBlur={field.handleBlur}
                 errorText={field.state.meta.errors[0]?.message}
+                disabled={createUserIsPending}
               />
             )}
           </Field>
@@ -163,13 +170,10 @@ export function SignUp() {
               fullWidth
               type="submit"
               disabled={!canSubmit}
+              isLoading={createUserIsPending}
               className="mt-8"
             >
-              {createUserIsPending ? (
-                <LoaderCircle className="size-6 animate-spin" />
-              ) : (
-                'Cadastrar'
-              )}
+              Cadastrar
             </Button>
           )}
         </Subscribe>
